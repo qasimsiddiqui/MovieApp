@@ -1,0 +1,7 @@
+//Add your TMDB API key in this file
+//change the file name to api_key.dart
+//https://developers.themoviedb.org/3
+
+class ApiKey {
+  final String key = "Your API key here";
+}
