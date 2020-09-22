@@ -13,4 +13,11 @@ class EndPoints {
     print(response);
     return response;
   }
+
+  Future<http.Response> trendingMovies() {
+    String url = baseURL + "/trending/movie/week?api_key=" + APIKEY().key;
+    var response = http.get(url);
+    print(response);
+    return response;
+  }
 }
