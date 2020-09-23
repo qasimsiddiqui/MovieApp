@@ -16,27 +16,49 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Movies App'),
         centerTitle: true,
       ),
-      body: Container(
-        color: Color.fromRGBO(33, 36, 41, 1),
-        child: Column(
-          children: [
-            _result != null
-                ? MovieDetailsCarousel(_result)
-                : CircularProgressIndicator(),
-            RaisedButton(
-                child: Text('get movies'),
-                onPressed: () async {
-                  SearchResult result = await API().trendingMovies();
-                  print(result);
-                  setState(() {
-                    _result = result;
-                  });
-                })
-          ],
-        ),
+      body: Column(
+        children: [
+          FutureBuilder(
+              future: API().trendingMovies(),
+              builder: (_, snapshot) {
+                List<Widget> children;
+                if (snapshot.hasData) {
+                  children = <Widget>[
+                    MovieDetailsCarousel(snapshot.data),
+                  ];
+                } else if (snapshot.hasError) {
+                  children = <Widget>[
+                    Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                      size: 60,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text('Error: ${snapshot.error}'),
+                    )
+                  ];
+                } else {
+                  children = <Widget>[
+                    SizedBox(
+                      child: CircularProgressIndicator(),
+                      width: 60,
+                      height: 60,
+                    )
+                  ];
+                }
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: children,
+                  ),
+                );
+              }),
+        ],
       ),
     );
   }
