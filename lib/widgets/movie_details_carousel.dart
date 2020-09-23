@@ -11,72 +11,17 @@ class MovieDetailsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-        // CarouselSlider(
-        //   options: CarouselOptions(
-        //     height: 250,
-        //     autoPlay: true,
-        //     aspectRatio: 2.0,
-        //     enlargeCenterPage: true,
-        //   ),
-        //   items: _result.movieList
-        //       .map((item) => Container(
-        //             child: Container(
-        //               margin: EdgeInsets.all(5.0),
-        //               child: ClipRRect(
-        //                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        //                   child: Stack(
-        //                     children: <Widget>[
-        //                       Image.network(
-        //                           ApiImageConfiguration().baseURL +
-        //                               "original" +
-        //                               item.posterPath,
-        //                           fit: BoxFit.cover,
-        //                           width: 1000.0),
-        //                       Positioned(
-        //                         bottom: 0.0,
-        //                         left: 0.0,
-        //                         right: 0.0,
-        //                         child: Container(
-        //                           decoration: BoxDecoration(
-        //                             gradient: LinearGradient(
-        //                               colors: [
-        //                                 Color.fromARGB(200, 0, 0, 0),
-        //                                 Color.fromARGB(0, 0, 0, 0)
-        //                               ],
-        //                               begin: Alignment.bottomCenter,
-        //                               end: Alignment.topCenter,
-        //                             ),
-        //                           ),
-        //                           padding: EdgeInsets.symmetric(
-        //                               vertical: 10.0, horizontal: 20.0),
-        //                           child: Text(
-        //                             '${item.title}',
-        //                             style: TextStyle(
-        //                               color: Colors.white,
-        //                               fontSize: 20.0,
-        //                               fontWeight: FontWeight.bold,
-        //                             ),
-        //                           ),
-        //                         ),
-        //                       ),
-        //                     ],
-        //                   )),
-        //             ),
-        //           ))
-        //       .toList(),
-        // );
-
-        CarouselSlider.builder(
+    return CarouselSlider.builder(
       itemCount: _result.movieList.length ?? 0,
       options: CarouselOptions(
         autoPlayAnimationDuration: Duration(seconds: 1),
-        height: 250,
+        height: 218,
       ),
       itemBuilder: (BuildContext context, int itemIndex) => Card(
-        color: Colors.red,
-        margin: EdgeInsets.all(5),
+        color: Colors.white70,
+        margin: EdgeInsets.all(4),
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
             Flexible(
@@ -103,39 +48,42 @@ class MovieDetailsCarousel extends StatelessWidget {
             Flexible(
                 flex: 1,
                 fit: FlexFit.loose,
-                child: Container(
-                  color: Colors.amber,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 20,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _result.movieList[itemIndex].title,
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(_result.movieList[itemIndex].releaseDate
+                          .substring(0, 4)),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      SmoothStarRating(
+                        isReadOnly: true,
+                        color: Colors.yellow,
+                        borderColor: Colors.yellow,
+                        size: 22,
+                        rating: _result.movieList[itemIndex].voteAverage / 2,
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        _result.movieList[itemIndex].overview,
+                        maxLines: 7,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
                         ),
-                        Text(
-                          _result.movieList[itemIndex].title,
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        Text(_result.movieList[itemIndex].releaseDate
-                            .substring(0, 4)),
-                        SmoothStarRating(
-                          isReadOnly: true,
-                          color: Colors.yellow,
-                          borderColor: Colors.yellow,
-                          size: 20,
-                          rating: _result.movieList[itemIndex].voteAverage / 2,
-                        ),
-                        Text(
-                          _result.movieList[itemIndex].overview,
-                          maxLines: 8,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ))
           ],
