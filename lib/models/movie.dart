@@ -7,7 +7,7 @@ class Movie {
   String _releaseDate;
   String _originalLanguage;
   String _originalTitle;
-  List<int> _genreIds;
+  //List<int> _genreIds;
   String _backdropPath;
   bool _adult;
   String _overview;
@@ -17,28 +17,29 @@ class Movie {
   String _originalName;
   String _name;
   String _firstAirDate;
-  List<String> _originCountry;
+  //List<String> _originCountry;
 
-  Movie(
-      {int id,
-      bool video,
-      int voteCount,
-      double voteAverage,
-      String title,
-      String releaseDate,
-      String originalLanguage,
-      String originalTitle,
-      List<int> genreIds,
-      String backdropPath,
-      bool adult,
-      String overview,
-      String posterPath,
-      double popularity,
-      String mediaType,
-      String originalName,
-      String name,
-      String firstAirDate,
-      List<String> originCountry}) {
+  Movie({
+    int id,
+    bool video,
+    int voteCount,
+    double voteAverage,
+    String title,
+    String releaseDate,
+    String originalLanguage,
+    String originalTitle,
+    //List<int> genreIds,
+    String backdropPath,
+    bool adult,
+    String overview,
+    String posterPath,
+    double popularity,
+    String mediaType,
+    String originalName,
+    String name,
+    String firstAirDate,
+    //List<String> originCountry
+  }) {
     this._id = id;
     this._video = video;
     this._voteCount = voteCount;
@@ -47,7 +48,7 @@ class Movie {
     this._releaseDate = releaseDate;
     this._originalLanguage = originalLanguage;
     this._originalTitle = originalTitle;
-    this._genreIds = genreIds;
+    //this._genreIds = genreIds;
     this._backdropPath = backdropPath;
     this._adult = adult;
     this._overview = overview;
@@ -57,7 +58,7 @@ class Movie {
     this._originalName = originalName;
     this._name = name;
     this._firstAirDate = firstAirDate;
-    this._originCountry = originCountry;
+    //this._originCountry = originCountry;
   }
 
   int get id => _id;
@@ -68,7 +69,7 @@ class Movie {
   String get releaseDate => _releaseDate;
   String get originalLanguage => _originalLanguage;
   String get originalTitle => _originalTitle;
-  List<int> get genreIds => _genreIds;
+  //List<int> get genreIds => _genreIds;
   String get backdropPath => _backdropPath;
   bool get adult => _adult;
   String get overview => _overview;
@@ -78,7 +79,7 @@ class Movie {
   String get originalName => _originalName;
   String get name => _name;
   String get firstAirDate => _firstAirDate;
-  List<String> get originCountry => _originCountry;
+  //List<String> get originCountry => _originCountry;
 
   Movie.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -89,7 +90,7 @@ class Movie {
     _releaseDate = json['release_date'];
     _originalLanguage = json['original_language'];
     _originalTitle = json['original_title'];
-    _genreIds = json['genre_ids'].cast<int>();
+    // _genreIds = json['genre_ids'].cast<int>() ?? [];
     _backdropPath = json['backdrop_path'];
     _adult = json['adult'];
     _overview = json['overview'];
@@ -99,7 +100,7 @@ class Movie {
     _originalName = json['original_name'];
     _name = json['name'];
     _firstAirDate = json['first_air_date'];
-    _originCountry = json['origin_country'].cast<String>();
+    //_originCountry = json['origin_country'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -112,7 +113,7 @@ class Movie {
     data['release_date'] = this._releaseDate;
     data['original_language'] = this._originalLanguage;
     data['original_title'] = this._originalTitle;
-    data['genre_ids'] = this._genreIds;
+    //data['genre_ids'] = this._genreIds;
     data['backdrop_path'] = this._backdropPath;
     data['adult'] = this._adult;
     data['overview'] = this._overview;
@@ -122,7 +123,7 @@ class Movie {
     data['original_name'] = this._originalName;
     data['name'] = this._name;
     data['first_air_date'] = this._firstAirDate;
-    data['origin_country'] = this._originCountry;
+    //data['origin_country'] = this._originCountry;
     return data;
   }
 
