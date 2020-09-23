@@ -11,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  SearchResult _result;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           FutureBuilder(
               future: API().trendingMovies(),
-              builder: (_, snapshot) {
+              builder: (_, AsyncSnapshot<SearchResult> snapshot) {
                 List<Widget> children;
                 if (snapshot.hasData) {
                   children = <Widget>[
