@@ -204,9 +204,7 @@ class Genres {
   }
 
   int get id => _id;
-  set id(int id) => _id = id;
   String get name => _name;
-  set name(String name) => _name = name;
 
   Genres.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -236,13 +234,9 @@ class ProductionCompanies {
   }
 
   int get id => _id;
-  set id(int id) => _id = id;
   String get logoPath => _logoPath;
-  set logoPath(String logoPath) => _logoPath = logoPath;
   String get name => _name;
-  set name(String name) => _name = name;
   String get originCountry => _originCountry;
-  set originCountry(String originCountry) => _originCountry = originCountry;
 
   ProductionCompanies.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
