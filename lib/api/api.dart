@@ -32,7 +32,7 @@ class API {
     if (response.statusCode == 200) {
       return MovieDetails.fromJson(json.decode(response.body));
     } else {
-      print(response.body);
+      print("Error : " + response.body);
       return null;
     }
   }

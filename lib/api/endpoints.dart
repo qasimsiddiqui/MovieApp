@@ -23,7 +23,7 @@ class EndPoints {
 
   Future<http.Response> getMovieDetails(int movieID) {
     String url =
-        baseURL + "movie/$movieID?api_key=" + APIKEY().key + "&language=en-US";
+        baseURL + "/movie/$movieID?api_key=" + APIKEY().key + "&language=en-US";
     var response = http.get(url);
     print(response);
     return response;
