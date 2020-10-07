@@ -14,7 +14,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: new Color.fromRGBO(27, 33, 47, 1),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('Movies App'),
         centerTitle: true,
       ),
