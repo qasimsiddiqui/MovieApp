@@ -26,6 +26,17 @@ class API {
     }
   }
 
+  Future<SearchResult> actionMovies() async {
+    var response = await EndPoints().actionMovies();
+    //if OK response and data retrieved
+    if (response.statusCode == 200) {
+      return SearchResult.fromJson(json.decode(response.body));
+    } else {
+      print(response.body);
+      return null;
+    }
+  }
+
   Future<MovieDetails> getMovieDetails(int movieID) async {
     var response = await EndPoints().getMovieDetails(movieID);
     //if OK response and data retrieved

@@ -7,7 +7,7 @@ class ActionMoviesGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: API().trendingMovies(),
+        future: API().actionMovies(),
         builder: (_, AsyncSnapshot<SearchResult> snapshot) {
           List<Widget> children;
           if (snapshot.hasData) {
