@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:movies_app/api/api.dart';
 import 'package:movies_app/api/api_configuration.dart';
 import 'package:movies_app/models/movie_details.dart';
@@ -16,6 +17,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(children: [
         FutureBuilder(
             future: API().getMovieDetails(widget.movieID),
@@ -23,9 +25,46 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               List<Widget> children;
               if (snapshot.hasData) {
                 children = <Widget>[
-                  Stack(children: [
-                    _PosterImage(posterPath: snapshot.data.posterPath)
-                  ])
+                  Stack(
+                    children: [
+                      Container(
+                        child: Stack(
+                          children: [
+                            _NetworkImage(
+                                posterPath: snapshot.data.backdropPath,
+                                size: 1),
+                            BackdropFilter(
+                              filter:
+                                  ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+                              child: Container(
+                                color: Colors.black.withOpacity(0.6),
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height - 80,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.width * 0.3,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: _NetworkImage(
+                                    posterPath: snapshot.data.posterPath,
+                                    size: 130),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
                 ];
               } else if (snapshot.hasError) {
                 children = <Widget>[
@@ -61,16 +100,22 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   }
 }
 
-class _PosterImage extends StatelessWidget {
-  const _PosterImage({Key key, @required String posterPath})
+class _NetworkImage extends StatelessWidget {
+  const _NetworkImage({Key key, @required String posterPath, double size})
       : _posterPath = posterPath,
+        _size = size,
         super(key: key);
 
   final String _posterPath;
+  final double _size;
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(ApiImageConfiguration().baseURL + "w342" + _posterPath,
+    return Image.network(
+        ApiImageConfiguration().baseURL +
+            "${_size == 1.0 ? "w780" : "w342"}" +
+            _posterPath,
+        width: _size == 1.0 ? MediaQuery.of(context).size.width : _size,
         loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
       if (loadingProgress == null) return child;
       return Center(
