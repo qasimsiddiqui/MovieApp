@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/widgets/action_movies_gridView.dart';
 import 'package:movies_app/widgets/movie_details_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,8 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Movies App'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [TrendingMoviesCarousel()],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [TrendingMoviesCarousel(), ActionMoviesGridView()],
+        ),
       ),
     );
   }
