@@ -6,7 +6,7 @@ import 'package:movies_app/screens/movie_details.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MovieDetailsCarousel extends StatelessWidget {
-  SearchResult _result;
+  final SearchResult _result;
 
   MovieDetailsCarousel(this._result);
 
@@ -52,6 +52,8 @@ class MovieDetailsCarousel extends StatelessWidget {
                       children: [
                         Text(
                           _result.movieList[itemIndex].title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
