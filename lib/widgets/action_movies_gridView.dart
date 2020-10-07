@@ -32,6 +32,18 @@ class ActionMoviesGridView extends StatelessWidget {
                               color: Colors.blue),
                         )
                       ])),
+              Container(
+                  height: 150,
+                  child: ListView.builder(
+                    itemExtent: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, index) {
+                      return GridTile(
+                        child: PosterImage(
+                            result: snapshot.data, itemIndex: index),
+                      );
+                    },
+                  ))
             ];
           } else if (snapshot.hasError) {
             children = <Widget>[
