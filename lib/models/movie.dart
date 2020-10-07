@@ -85,7 +85,7 @@ class Movie {
     _id = json['id'];
     _video = json['video'];
     _voteCount = json['vote_count'];
-    _voteAverage = json['vote_average'];
+    _voteAverage = json['vote_average'].toDouble();
     _title = json['title'];
     _releaseDate = json['release_date'];
     _originalLanguage = json['original_language'];
