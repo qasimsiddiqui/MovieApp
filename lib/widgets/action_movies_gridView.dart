@@ -33,14 +33,21 @@ class ActionMoviesGridView extends StatelessWidget {
                         )
                       ])),
               Container(
-                  height: 150,
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  height: 200,
                   child: ListView.builder(
-                    itemExtent: 10,
                     scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data.movieList.length,
                     itemBuilder: (_, index) {
-                      return GridTile(
-                        child: PosterImage(
-                            result: snapshot.data, itemIndex: index),
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: PosterImage(
+                            posterPath:
+                                snapshot.data.movieList[index].posterPath,
+                          ),
+                        ),
                       );
                     },
                   ))
