@@ -45,8 +45,8 @@ class _TrendingMoviesCarouselState extends State<TrendingMoviesCarousel> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: PosterImage(
-                        result: snapshot.data,
-                        itemIndex: itemIndex,
+                        posterPath:
+                            snapshot.data.movieList[itemIndex].posterPath,
                       ),
                     ),
                   ),
