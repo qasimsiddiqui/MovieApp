@@ -15,9 +15,11 @@ class MovieDetailsCarousel extends StatelessWidget {
     return CarouselSlider.builder(
       itemCount: _result.movieList.length ?? 0,
       options: CarouselOptions(
-        autoPlayAnimationDuration: Duration(seconds: 1),
-        height: 218,
-      ),
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 3),
+          autoPlayAnimationDuration: Duration(milliseconds: 500),
+          height: 350,
+          viewportFraction: 0.7),
       itemBuilder: (BuildContext context, int itemIndex) => Card(
         color: Colors.white70,
         margin: EdgeInsets.all(4),
@@ -30,62 +32,12 @@ class MovieDetailsCarousel extends StatelessWidget {
               new MaterialPageRoute(
                   builder: (context) => MovieDetailsScreen(
                       movieID: _result.movieList[itemIndex].id))),
-          child: Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: _PosterImage(
-                    result: _result,
-                    itemIndex: itemIndex,
-                  ),
-                ),
-              ),
-              Flexible(
-                  flex: 1,
-                  fit: FlexFit.loose,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _result.movieList[itemIndex].title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(_result.movieList[itemIndex].releaseDate
-                            .substring(0, 4)),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        SmoothStarRating(
-                          isReadOnly: true,
-                          color: Colors.yellow,
-                          borderColor: Colors.yellow,
-                          size: 22,
-                          rating: _result.movieList[itemIndex].voteAverage / 2,
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          _result.movieList[itemIndex].overview,
-                          maxLines: 7,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
-            ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: _PosterImage(
+              result: _result,
+              itemIndex: itemIndex,
+            ),
           ),
         ),
       ),
@@ -111,6 +63,7 @@ class _PosterImage extends StatelessWidget {
         ApiImageConfiguration().baseURL +
             "w342" +
             _result.movieList[_itemIndex].posterPath,
+        //width: MediaQuery.of(context).size.width * 0.8,
         loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
       if (loadingProgress == null) return child;
       return Center(
