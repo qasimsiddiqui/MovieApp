@@ -10,17 +10,22 @@ class PosterImage extends StatelessWidget {
   final String _posterPath;
   @override
   Widget build(BuildContext context) {
-    return Image.network(ApiImageConfiguration().baseURL + "w342" + _posterPath,
-        //width: MediaQuery.of(context).size.width * 0.8,
-        loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
-      if (loadingProgress == null) return child;
-      return Center(
-          child: CircularProgressIndicator(
-        value: loadingProgress.expectedTotalBytes != null
-            ? loadingProgress.cumulativeBytesLoaded /
-                loadingProgress.expectedTotalBytes
-            : null,
-      ));
-    });
+    return _posterPath == null
+        ? Image.asset(
+            'assets/images/noImage.jpg',
+            fit: BoxFit.fitHeight,
+          )
+        : Image.network(ApiImageConfiguration().baseURL + "w342" + _posterPath,
+            //width: MediaQuery.of(context).size.width * 0.8,
+            loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Center(
+                child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes
+                  : null,
+            ));
+          });
   }
 }
