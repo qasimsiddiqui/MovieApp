@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:movies_app/api/api.dart';
-import 'package:movies_app/api/api_configuration.dart';
 import 'package:movies_app/models/movie_details.dart';
+import 'package:movies_app/widgets/backdrop_image.dart';
+import 'package:movies_app/widgets/poster_image.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   final int movieID;
@@ -17,7 +18,10 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: new Color.fromRGBO(27, 33, 47, 1),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: Column(children: [
         FutureBuilder(
             future: API().getMovieDetails(widget.movieID),
@@ -30,16 +34,16 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       Container(
                         child: Stack(
                           children: [
-                            _NetworkImage(
-                                posterPath: snapshot.data.backdropPath,
-                                size: 1),
+                            BackdropImage(
+                                posterPath: snapshot.data.backdropPath),
                             BackdropFilter(
                               filter:
                                   ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
                               child: Container(
                                 color: Colors.black.withOpacity(0.6),
                                 width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height - 80,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.564,
                               ),
                             )
                           ],
@@ -51,15 +55,68 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             SizedBox(
                               height: MediaQuery.of(context).size.width * 0.3,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: _NetworkImage(
-                                    posterPath: snapshot.data.posterPath,
-                                    size: 130),
-                              ),
-                            )
+                            Row(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.28,
+                                  padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: PosterImage(
+                                      posterPath: snapshot.data.posterPath,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.14),
+                                      Text(
+                                        snapshot.data.title,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: 1.2,
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text.rich(TextSpan(children: [
+                                        TextSpan(
+                                            text: "(" +
+                                                snapshot.data.releaseDate
+                                                    .substring(0, 4) +
+                                                ")",
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: Colors.white60)),
+                                        TextSpan(
+                                            text: "  |  " +
+                                                (snapshot.data.runtime ~/ 60)
+                                                    .toString() +
+                                                "hr " +
+                                                (snapshot.data.runtime % 60)
+                                                    .toString() +
+                                                "min",
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: Colors.white60))
+                                      ]))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -97,34 +154,5 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             }),
       ]),
     );
-  }
-}
-
-class _NetworkImage extends StatelessWidget {
-  const _NetworkImage({Key key, @required String posterPath, double size})
-      : _posterPath = posterPath,
-        _size = size,
-        super(key: key);
-
-  final String _posterPath;
-  final double _size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(
-        ApiImageConfiguration().baseURL +
-            "${_size == 1.0 ? "w780" : "w342"}" +
-            _posterPath,
-        width: _size == 1.0 ? MediaQuery.of(context).size.width : _size,
-        loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
-      if (loadingProgress == null) return child;
-      return Center(
-          child: CircularProgressIndicator(
-        value: loadingProgress.expectedTotalBytes != null
-            ? loadingProgress.cumulativeBytesLoaded /
-                loadingProgress.expectedTotalBytes
-            : null,
-      ));
-    });
   }
 }
