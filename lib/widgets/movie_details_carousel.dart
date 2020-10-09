@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:movies_app/api/api.dart';
-import 'package:movies_app/api/api_configuration.dart';
 import 'package:movies_app/models/search_results.dart';
 import 'package:movies_app/screens/movie_details.dart';
 import 'package:movies_app/widgets/poster_image.dart';

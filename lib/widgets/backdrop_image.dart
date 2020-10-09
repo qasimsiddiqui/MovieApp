@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/api/api_configuration.dart';
 
-class PosterImage extends StatelessWidget {
-  const PosterImage({Key key, @required String posterPath})
+class BackdropImage extends StatelessWidget {
+  const BackdropImage({Key key, @required String posterPath})
       : _posterPath = posterPath,
         super(key: key);
 
@@ -14,7 +14,7 @@ class PosterImage extends StatelessWidget {
             'assets/images/noImage.jpg',
             fit: BoxFit.fitHeight,
           )
-        : Image.network(ApiImageConfiguration().baseURL + "w342" + _posterPath,
+        : Image.network(ApiImageConfiguration().baseURL + "w780" + _posterPath,
             //width: MediaQuery.of(context).size.width * 0.8,
             loadingBuilder: (_, Widget child, ImageChunkEvent loadingProgress) {
             if (loadingProgress == null) return child;
