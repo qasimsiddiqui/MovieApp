@@ -57,62 +57,65 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             ),
                             Row(
                               children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.28,
-                                  padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: PosterImage(
-                                      posterPath: snapshot.data.posterPath,
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.28,
+                                    padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: PosterImage(
+                                        posterPath: snapshot.data.posterPath,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.14),
-                                      Text(
-                                        snapshot.data.title,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: 1.2,
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text.rich(TextSpan(children: [
-                                        TextSpan(
-                                            text: "(" +
-                                                snapshot.data.releaseDate
-                                                    .substring(0, 4) +
-                                                ")",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.white60)),
-                                        TextSpan(
-                                            text: "  |  " +
-                                                (snapshot.data.runtime ~/ 60)
-                                                    .toString() +
-                                                "hr " +
-                                                (snapshot.data.runtime % 60)
-                                                    .toString() +
-                                                "min",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.white60))
-                                      ]))
-                                    ],
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.14),
+                                        Text(
+                                          snapshot.data.title,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text.rich(TextSpan(children: [
+                                          TextSpan(
+                                              text: "(" +
+                                                  snapshot.data.releaseDate
+                                                      .substring(0, 4) +
+                                                  ")",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.white60)),
+                                          TextSpan(
+                                              text: "  |  " +
+                                                  (snapshot.data.runtime ~/ 60)
+                                                      .toString() +
+                                                  "hr " +
+                                                  (snapshot.data.runtime % 60)
+                                                      .toString() +
+                                                  "min",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.white60))
+                                        ]))
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],

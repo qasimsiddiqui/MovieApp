@@ -20,8 +20,8 @@ class ActionMoviesGridView extends StatelessWidget {
                         Text(
                           'Action Movies',
                           style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
                               color: Colors.white),
                         ),
                         Text(

@@ -25,7 +25,7 @@ class _TrendingMoviesCarouselState extends State<TrendingMoviesCarousel> {
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 3),
                     autoPlayAnimationDuration: Duration(milliseconds: 500),
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.5,
                     viewportFraction: 0.7),
                 itemBuilder: (BuildContext context, int itemIndex) => Card(
                   color: Colors.white70,
