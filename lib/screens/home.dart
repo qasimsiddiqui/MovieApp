@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/widgets/action_movies_gridView.dart';
-import 'package:movies_app/widgets/movie_details_carousel.dart';
+import 'package:movies_app/widgets/trendingMovies_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
