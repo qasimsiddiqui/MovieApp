@@ -92,15 +92,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                                   .size
                                                   .height *
                                               0.14),
-                                      Text(
-                                        snapshot.data.title,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      ),
+                                      Text(snapshot.data.title,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6),
                                       SizedBox(height: 5),
                                       Text.rich(TextSpan(children: [
                                         TextSpan(
@@ -108,9 +105,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                                 snapshot.data.releaseDate
                                                     .substring(0, 4) +
                                                 ")",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.white60)),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1),
                                         TextSpan(
                                             text: "  |  " +
                                                 (snapshot.data.runtime ~/ 60)
@@ -119,9 +116,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                                 (snapshot.data.runtime % 60)
                                                     .toString() +
                                                 "min",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.white60))
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1)
                                       ]))
                                     ],
                                   ),
@@ -130,31 +127,31 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             ],
                           ),
                           Container(
-                            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                            padding: EdgeInsets.fromLTRB(20, 20, 10, 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('Snopsis:',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14,
-                                        color: Colors.white70)),
+                                    style:
+                                        Theme.of(context).textTheme.headline6),
                                 Text(snapshot.data.overview,
                                     maxLines: 9,
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 12, color: Colors.white)),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2),
                                 SizedBox(height: 20),
                                 Text.rich(TextSpan(children: [
                                   TextSpan(
                                       text: "Genres: ",
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white70)),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
                                   TextSpan(
                                       text:
                                           _getGenreNames(snapshot.data.genres),
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.white)),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2),
                                 ]))
                               ],
                             ),
