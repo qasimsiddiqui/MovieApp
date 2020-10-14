@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/api/api.dart';
 import 'package:movies_app/models/search_results.dart';
+import 'package:movies_app/screens/movie_details.dart';
 import 'package:movies_app/widgets/poster_image.dart';
 
-class ActionMoviesGridView extends StatelessWidget {
+class MoviesListView extends StatelessWidget {
+  final String searchWord;
+  final Map<String, String> names = {
+    "top_rated": "Top Rated",
+    "popular": "Popular",
+    "upcoming": "Upcoming"
+  };
+
+  MoviesListView({this.searchWord});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: API().actionMovies(),
+        future: API().getKeywordMovies(searchWord),
         builder: (_, AsyncSnapshot<SearchResult> snapshot) {
           List<Widget> children;
           if (snapshot.hasData) {
@@ -18,7 +28,7 @@ class ActionMoviesGridView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Action Movies',
+                          names[searchWord],
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
@@ -39,13 +49,21 @@ class ActionMoviesGridView extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data.movieList.length,
                     itemBuilder: (_, index) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: PosterImage(
-                            posterPath:
-                                snapshot.data.movieList[index].posterPath,
+                      return InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) => MovieDetailsScreen(
+                                    movieID:
+                                        snapshot.data.movieList[index].id))),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: PosterImage(
+                              posterPath:
+                                  snapshot.data.movieList[index].posterPath,
+                            ),
                           ),
                         ),
                       );

@@ -27,8 +27,8 @@ class API {
     }
   }
 
-  Future<SearchResult> actionMovies() async {
-    var response = await EndPoints().actionMovies();
+  Future<SearchResult> getKeywordMovies(String keyword) async {
+    var response = await EndPoints().getKeywordMovies(keyword);
     //if OK response and data retrieved
     if (response.statusCode == 200) {
       return SearchResult.fromJson(json.decode(response.body));
