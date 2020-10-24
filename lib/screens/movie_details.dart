@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:movies_app/api/api.dart';
 import 'package:movies_app/models/movie_details.dart';
 import 'package:movies_app/widgets/backdrop_image.dart';
-import 'package:movies_app/widgets/crew_and_cast.dart';
+import 'package:movies_app/widgets/cast_listView.dart';
 import 'package:movies_app/widgets/poster_image.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -156,7 +156,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                               ],
                             ),
                           ),
-                          CrewAndCast(movieID: snapshot.data.id)
+                          CastListView(movieID: snapshot.data.id)
                         ],
                       ),
                     ],

@@ -3,10 +3,10 @@ import 'package:movies_app/api/api.dart';
 import 'package:movies_app/models/movie_credits.dart';
 import 'package:movies_app/widgets/poster_image.dart';
 
-class CrewAndCast extends StatelessWidget {
+class CastListView extends StatelessWidget {
   final int movieID;
 
-  const CrewAndCast({this.movieID});
+  const CastListView({this.movieID});
 
   @override
   Widget build(BuildContext context) {
