@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/search_movie.dart';
 import 'package:movies_app/widgets/movies_listView.dart';
 import 'package:movies_app/widgets/trendingMovies_carousel.dart';
 
@@ -26,10 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
             icon: Icon(
               Icons.search,
-              size: 35,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: () => Navigator.push(context,
+                new MaterialPageRoute(builder: (context) => SearchMovie())),
           )
         ],
       ),
