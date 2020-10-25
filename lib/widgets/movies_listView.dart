@@ -71,17 +71,8 @@ class MoviesListView extends StatelessWidget {
                   ))
             ];
           } else if (snapshot.hasError) {
-            children = <Widget>[
-              Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 60,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text('Error: ${snapshot.error}'),
-              )
-            ];
+            children = <Widget>[];
+            print("No internet error.");
           } else {
             children = <Widget>[
               SizedBox(
