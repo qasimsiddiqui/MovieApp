@@ -87,6 +87,7 @@ class _SearchMovieState extends State<SearchMovie> {
                   itemCount: _searchResult.movieList.length,
                   // ignore: missing_return
                   itemBuilder: (_, index) {
+                    try {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: Row(
@@ -161,6 +162,9 @@ class _SearchMovieState extends State<SearchMovie> {
                           ],
                         ),
                       );
+                    } catch (ex) {
+                      print(ex.toString());
+                    }
                   },
                 ),
               )
