@@ -11,7 +11,7 @@ class PosterImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return _posterPath == null
         ? Image.asset(
-            'assets/images/noImage.jpg',
+            'assets/images/noImage.png',
             fit: BoxFit.fitHeight,
           )
         : Image.network(ApiImageConfiguration().baseURL + "w342" + _posterPath,
