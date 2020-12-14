@@ -52,7 +52,7 @@ class _TrendingMoviesCarouselState extends State<TrendingMoviesCarousel> {
                 ),
               )
             ];
-          } else if (snapshot.hasError) {
+          } else if (snapshot.hasError || snapshot.data == null) {
             children = <Widget>[
               Center(
                 child: Image.asset(

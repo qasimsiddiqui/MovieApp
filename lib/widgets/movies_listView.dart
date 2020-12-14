@@ -70,7 +70,7 @@ class MoviesListView extends StatelessWidget {
                     },
                   ))
             ];
-          } else if (snapshot.hasError) {
+          } else if (snapshot.hasError || snapshot.data == null) {
             children = <Widget>[];
             print("No internet error.");
           } else {
