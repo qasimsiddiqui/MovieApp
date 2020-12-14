@@ -34,6 +34,17 @@ class _SearchMovieState extends State<SearchMovie> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: TextFormField(
+                onFieldSubmitted: (value) async {
+                  setState(() {
+                    searchText = value;
+                  });
+
+                  SearchResult _result = await API().searchMovie(searchText);
+                  FocusScope.of(context).unfocus();
+                  setState(() {
+                    _searchResult = _result;
+                  });
+                },
                 style: TextStyle(fontSize: 20, color: Colors.white),
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.words,
@@ -47,6 +58,7 @@ class _SearchMovieState extends State<SearchMovie> {
                     onPressed: () async {
                       SearchResult _result =
                           await API().searchMovie(searchText);
+                      FocusScope.of(context).unfocus();
                       setState(() {
                         _searchResult = _result;
                       });
@@ -75,8 +87,7 @@ class _SearchMovieState extends State<SearchMovie> {
             ),
             if (_searchResult == null)
               Container(
-                height: 200,
-                color: Colors.red,
+                height: 10,
               )
             else
               Padding(
