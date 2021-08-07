@@ -16,8 +16,9 @@ A Flutter project to search for latest, upcoming and trending movies and view th
 &nbsp;
 ## Screenshots
 
-| <img src="./ReadMeImages/1.gif">	| <img src="./ReadMeImages/2.gif"> 	| <img src="./ReadMeImages/3.gif"> 	| <img src="./ReadMeImages/4.gif"> 	|
-|---	|---	|---	|---	|
+| <img src="./ReadMeImages/1.gif">	| <img src="./ReadMeImages/2.gif"> |
+|---:	|---	|
+| <img src="./ReadMeImages/3.gif"> 	| <img src="./ReadMeImages/4.gif"> |
 
 ## Getting Started
 ### Prerequisites
